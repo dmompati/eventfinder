@@ -20,3 +20,6 @@ class EventView(generic.DetailView):
 
 def account(request):
     return render(request, 'eventFinderApp/account.html')
+
+def home(request):
+    return HttpResponse('<h1>Blog Home</h1>')
