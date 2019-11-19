@@ -1,7 +1,25 @@
 {% extends "./base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-
-You should put the user's account information and upcoming events here.
-
+<div class="content-section">
+        <div class="media">
+          <img class="rounded-circle account-img" src="{{  user.profile.image.url }}"> <!--finding users image if they have one saved-->
+          <div class="media-body">
+            <h2 class="account-heading">{{ user.username }}</h2> <!--Accessing user email variable-->
+            <p class="text-secondary">{{ user.email }}</p>
+          </div>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <fieldset class="form-group">
+              <legend class="border-bottom">Account Info</legend>
+              {{ u_form|crispy }}
+              {{ p_form|crispy }} <!--Renders form in paragraphs-->
+          </fieldset>
+          <div class="form-group">
+              <button class="btn btn-outline" type="submit">Update</button>
+          </div>
+      </form>
+      </div>
 {% endblock %}
